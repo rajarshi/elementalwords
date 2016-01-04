@@ -1,4 +1,4 @@
-import sys
+import sys, re
 
 if len(sys.argv) != 2:
     print 'Usage: code.py WORD_LIST_FILE_NAME'
@@ -7,22 +7,12 @@ if len(sys.argv) != 2:
 wordlist = sys.argv[1]
 words = [x.strip().lower() for x in open(wordlist, 'r').read().split("\n")]
 print 'Dictionary has %d words' % (len(words))
-elems = [x.lower() for x in open('elements.txt', 'r').read().split("\n")]
-elems1 = filter(lambda x: len(x) == 1, elems)
-elems2 = filter(lambda x: len(x) == 2, elems)
-elems3 = filter(lambda x: len(x) > 2, elems)
-print 'Read %d elements. %d 1-leter, %d 2-letter, %d 3-letter' % (len(elems), len(elems1), len(elems2), len(elems3))
 
-## We ignore the 3 letter elements
+elems = [x.lower() for x in open('elements.txt', 'r').read().split("\n")]
+elems_regex = re.compile('^(?:'+'|'.join(elems)+')+$', re.I)
+
 def elements_only(word):
-    s2 = [word[i:i+2] for i in xrange(0, len(word), 2)]
-    ## remove all 2 letter elements
-    t1 = filter(lambda x: x not in elems2, s2)
-    if len(t1) == 0: return True
-    ## remove all 1 letter elements
-    t2 = filter(lambda x: x not in elems1, list(''.join(t1)))
-    ##print s2, '\n  ', t1, '\n    ', t2
-    return len(t2) == 0
+    return elems_regex.match(word) is not None
 
 n = 0
 valid_w = []
