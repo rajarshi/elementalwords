@@ -8,7 +8,7 @@ wordlist = sys.argv[1]
 words = [x.strip().lower() for x in open(wordlist, 'r').read().split("\n")]
 print 'Dictionary has %d words' % (len(words))
 
-elems = [x.lower() for x in open('elements.txt', 'r').read().split("\n")]
+elems = filter(lambda x: x != '', [x.lower() for x in open('elements.txt', 'r').read().split("\n")])
 elems_regex = re.compile('^(?:'+'|'.join(elems)+')+$', re.I)
 
 def elements_only(word):
