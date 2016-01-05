@@ -9,7 +9,7 @@ wordlist = sys.argv[1]
 words = open(wordlist, 'r').read()
 print('Dictionary has %d words' % (len(re.findall('\n', words))))
 with open('elements.txt', 'r') as eles:
-    elems = {e.lower(): e for e in eles.read().split()}
+    elems = {e.lower(): e for e in eles.read().split() if e != ''}
 valid_w = re.findall('(^(?:'+'|'.join(elems.keys())+')+?$)', words, re.I|re.M)
 print('Found %d elemental words' % (len(valid_w)))
 pattern = re.compile('|'.join(elems.keys()))
