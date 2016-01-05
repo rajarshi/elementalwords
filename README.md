@@ -4,6 +4,6 @@ found on this [blog post](http://blog.rguha.net/?p=1521). To generate the list o
 ```
 python code.py sowpods.txt
 ```
-The list of valid words will be dumped to `elemental-sowpods.txt`. The [SOWPODS](https://en.wikipedia.org/wiki/SOWPODS) wordlist is for English, the [Wiktionary](https://www.wiktionary.org/) 
+The list of valid words (in "element-case"!!) will be dumped to `elemental-sowpods.txt`. The [SOWPODS](https://en.wikipedia.org/wiki/SOWPODS) wordlist is for English, the [Wiktionary](https://www.wiktionary.org/) 
 wordlist includes all languages supported by [Wiktionary](https://www.wiktionary.org/).
 
